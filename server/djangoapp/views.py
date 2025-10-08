@@ -1,8 +1,6 @@
 
 # Uncomment the required imports before adding the code
-from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -107,9 +105,7 @@ def get_dealer_reviews(request, dealer_id):
         for review_detail in reviews:
             try:
                 # Use get() and default empty string to avoid errors
-                response = analyze_review_sentiments(review_detail.get('review', ''))
-                print(response)
-                # review_detail['sentiment'] = response.get('sentiment', 'unknown') if response else 'unknown'
+                analyze_review_sentiments(review_detail.get('review', ''))
             except Exception as e:
                 print(f"Sentiment analysis failed: {e}")
         return JsonResponse({"status": 200, "reviews": reviews})
@@ -130,7 +126,7 @@ def add_review(request):
     if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200})
         except Exception:
             return JsonResponse({"status": 401, "message": "Error in posting review"})

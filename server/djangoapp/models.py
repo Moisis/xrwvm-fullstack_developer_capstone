@@ -56,10 +56,19 @@ class CarModel(models.Model):
         (OTHER, 'Other'),
     ]
 
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    car_make = models.ForeignKey(
+        CarMake,
+        on_delete=models.CASCADE
+    )
     name = models.CharField(max_length=100)
-    car_type = models.CharField(max_length=20, choices=CAR_TYPE_CHOICES, default=OTHER)
-    year = models.IntegerField(validators=[MinValueValidator(2015), MaxValueValidator(2023)])
+    car_type = models.CharField(
+        max_length=20,
+        choices=CAR_TYPE_CHOICES,
+        default=OTHER
+    )
+    year = models.IntegerField(
+        validators=[MinValueValidator(2015), MaxValueValidator(2023)]
+    )
 
     def __str__(self):
         return f"{self.name} ({self.year})"
