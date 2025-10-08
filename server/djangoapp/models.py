@@ -69,6 +69,3 @@ class CarModel(models.Model):
     year = models.IntegerField(
         validators=[MinValueValidator(2015), MaxValueValidator(2023)]
     )
-
-    def __str__(self):
-        return f"{self.name} ({self.year})"
