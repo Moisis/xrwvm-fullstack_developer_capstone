@@ -78,6 +78,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
   }
 });
 
+/* jshint esversion: 8 */
 // Express route to fetch dealer by a particular id
 app.get('/fetchDealer/:id', async (req, res) => {
 //Write your code here
