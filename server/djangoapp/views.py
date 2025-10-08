@@ -14,6 +14,7 @@ from .restapis import get_request, analyze_review_sentiments, post_review
 logger = logging.getLogger(__name__)
 
 # Create your views here.
+
 def get_cars(request):
     logger.debug(f"Request method: {request.method}")
     count = CarMake.objects.count()
@@ -25,7 +26,6 @@ def get_cars(request):
     for car_model in car_models:
         cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
-
 
 @csrf_exempt
 def login_user(request):
